@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using DatingApp.DataContext;
+using DatingApp.API.Data;
+using Microsoft.EntityFrameworkCore;
 
 namespace DatingApp.API.Controllers {
     // http://localhost:500/api/values
@@ -12,21 +13,22 @@ namespace DatingApp.API.Controllers {
     [ApiController]
     public class ValuesController : ControllerBase {
         private readonly DataContext _context;
-        public ValueController (DataContext context) 
+        public ValuesController (DataContext context) 
         {
             _context = context;
 
         }
     [HttpGet]
-    public IActionResult GetValues()
+    //task represents an asynchronous operation that can return a value
+    public async Task<IActionResult> GetValues()
     {
-        var values = _context.Values.ToList();
+        var values = await _context.Values.ToListAsync();
         return Ok(values);
     }
     [HttpGet("{id}")]
-    public IActionResult GetValue()
+    public async Task<IActionResult> GetValue(int id)
     {
-        var value = _context.Values.FirstOrDefault(x => x.Id == id);
+        var value = await _context.Values.FirstOrDefaultAsync(x => x.Id == id);
         return Ok(value);
     }
 
@@ -38,21 +40,21 @@ namespace DatingApp.API.Controllers {
         // }
 
         // GET api/values/5
-        [HttpGet ("{id}")]
-        public ActionResult<string> Get (int id) {
-            return "value";
-        }
+        // [HttpGet ("{id}")]
+        // public ActionResult<string> Get (int id) {
+        //     return "value";
+        // }
 
         // POST api/values
-        [HttpPost]
-        public void Post ([FromBody] string value) { }
+        // [HttpPost]
+        // public void Post ([FromBody] string value) { }
 
         // PUT api/values/5
-        [HttpPut ("{id}")]
-        public void Put (int id, [FromBody] string value) { }
+        // [HttpPut ("{id}")]
+        // public void Put (int id, [FromBody] string value) { }
 
         // DELETE api/values/5
-        [HttpDelete ("{id}")]
-        public void Delete (int id) { }
+    //     [HttpDelete ("{id}")]
+    //     public void Delete (int id) { }
     }
 }
