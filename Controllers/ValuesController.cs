@@ -10,6 +10,8 @@ namespace DatingApp.API.Controllers {
     // http://localhost:500/api/values
     //REST API uses http verbs to identify  the action it's going to return
     [Route ("api/[controller]")]
+    //1. enforces attributing that we have above
+    //2. automatically validates the request
     [ApiController]
     public class ValuesController : ControllerBase {
         private readonly DataContext _context;
