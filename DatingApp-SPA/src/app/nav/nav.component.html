@@ -1,0 +1,11 @@
+<nav class="navbar navbar-dark bg-dark">
+  <a href="#">Matches</a>
+  <a href="#">Lists</a>
+  <a href="#">Messages</a>
+
+<form #loginForm="ngForm" class="form-inline my-2 my-lg-0" (ngSubmit)="login()">
+  <input required name="username" type="text" class="form-control mb-2" id="inlineFormInput" placeholder="Username" [(ngModel)]="model.username" >
+  <input required name="password" type="password" class="form-control mb-2" id="inlineFormInput" placeholder="Password" [(ngModel)]="model.password">
+  <input [disabled]="!loginForm.valid" type="submit" class="btn btn-primary">
+</form>
+</nav>
