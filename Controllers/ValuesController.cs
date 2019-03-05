@@ -22,6 +22,8 @@ namespace DatingApp.API.Controllers {
             _context = context;
 
         }
+    
+    [AllowAnonymous]
     [HttpGet]
     //task represents an asynchronous operation that can return a value
     public async Task<IActionResult> GetValues()
